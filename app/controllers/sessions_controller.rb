@@ -11,8 +11,11 @@ class SessionsController < ApplicationController
   def create
     if !!params[:name] && !params[:name].strip.empty?
       session[:name] = params[:name]
+      redirect_path = home_path
+    else
+      redirect_path = login_path
     end
-    redirect_to home_path
+    redirect_to redirect_path
   end
   
   def destroy
